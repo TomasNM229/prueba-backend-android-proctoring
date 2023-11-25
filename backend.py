@@ -7,7 +7,7 @@ import face_recognition
 
 app = Flask(__name__)
 
-data = []
+info = []
 
 
 def detect_faces(frame):
@@ -38,17 +38,16 @@ def analizar_imagen():
                 'hora enviada': timestamp,
                 'hora analizada': fecha_hora}
 
-    data.append(new_data)
+    info.append(new_data)
 
     # Puedes enviar una respuesta con el resultado o simplemente confirmar la finalización del análisis
     return jsonify({'mensaje': 'Análisis completado'})
 
 
-@app.route('/data', methods=['POST'])
+@app.route('/data')
 def mostrar_data():
-    msg = 'Data: ' + data
-    return msg
-
+    #msg = 'Data: ' + info
+    return str(info)
 
 if __name__ == '__main__':
     app.run(debug=True)
